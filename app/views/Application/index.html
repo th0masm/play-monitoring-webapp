@@ -1,0 +1,13 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<h3>Monitoring of the Play Platform...</h3>
+
+<div class="well">
+	#{if connected}
+		Connected to the platform.
+	#{/if}
+	#{else}
+		<a href="@{MonitoringController.create()}">Please connect to a platform...</a>
+	#{/else}
+</div>

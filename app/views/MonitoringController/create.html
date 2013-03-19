@@ -1,0 +1,47 @@
+#{extends 'main.html' /}
+#{set title:'Montoring connection' /}
+
+<div class="page-header">
+	<h1>Monitoring Connection</h1>
+</div>
+
+<div class="alert alert-success">
+	<button type="button" class="close" data-dismiss="alert">×</button>
+	<strong>Connection to the monitoring endpoint.</strong>
+</div>
+
+#{ifErrors}
+	<div class="alert-message error">
+        <a class="close" href="#">&times;</a>
+        <p><strong>Some values are invalid, please fix them...</strong></p>
+        <ul>
+         #{errors}
+       		<li>${error}</li>
+   		#{/errors}
+   		</ul>
+      </div>
+#{/ifErrors}
+
+<div class="well">
+#{form @MonitoringController.createNew()}
+		<fieldset>
+				<div class="clearfix">
+        			<label for="consumer">
+        				<a href="#" id="tooltip_server" rel="tooltip" data-original-title="Enter the address of the monitoring endpoint">Monitoring endpoint</a>
+     				</label>
+        			<div class="input">
+        				<input type="text" name="monitoring_server" id="monitoring_server" class="xlarge" size="50" value="${flash.monitoring_server}"/>
+        			</div>
+        		</div>
+	    		<div class="actions">
+        			<input class="btn primary" type="submit" value="Connect" />
+        		</div>
+        </fieldset>
+#{/form}
+</div>
+
+#{set 'lastScripts'}
+	<script>
+	$('#tooltip_server').tooltip({placement : 'right'});
+	</script>
+#{/set}
